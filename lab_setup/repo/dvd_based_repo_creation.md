@@ -1,5 +1,5 @@
 # DVD-Based Repo Creation
-The following steps will take you through creating a repo on a RHEL 9.0 server using the files off the DVD as a source.
+The following steps will take you through creating a repo on a Rocky 9.0 server using the files off the DVD as a source.
 
 ## 1. Create mount point
 `mkdir /mnt/cdrom`
@@ -27,20 +27,20 @@ We can see here that the DVD ISO is present under `/dev/sr0`.
 
 ```
 [BaseOS]
-name=Red Hat Enterprise Linux 9.0 BaseOS RPMs (DVD)
+name=rocky 9.0 BaseOS RPMs (DVD)
 metadata_expire=-1
 enabled=1
 gpgcheck=1
 baseurl=file:///mnt/cdrom/BaseOS/
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 
 [AppStream]
-name=Red Hat Enterprise Linux 9.0 AppStream RPMs (DVD)
+name=Rocky 9.0 AppStream RPMs (DVD)
 metadata_expire=-1
 enabled=1
 gpgcheck=1
-baseurl=file:///mnt/cdrom/AppStream/
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+baseurl=file:///mnt/cdrom/minimal/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 ```
 
 ## 5. Search the repos to validate they're working
@@ -57,8 +57,11 @@ dnf search httpd --repo AppStream
 
 ## 8. Copy repos to the html directory
 ```
-cp -r -v /mnt/cdrom/AppStream /var/www/html/repo
+cp -r -v /mnt/cdrom/minimal /var/www/html/repo
 cp -r -v /mnt/cdrom/BaseOS /var/www/html/repo
+
+cd /mnt/cdrom/
+mv minimal/ Appstream
 ```
 
 ## 9. Change 'baseurl' to point to the new location for repo data
@@ -66,20 +69,20 @@ cp -r -v /mnt/cdrom/BaseOS /var/www/html/repo
 
 ```
 [BaseOS]
-name=Red Hat Enterprise Linux 9.0 BaseOS RPMs (DVD)
+name=Rocky 9.0 BaseOS RPMs (DVD)
 metadata_expire=-1
 enabled=1
 gpgcheck=1
 baseurl=file:///var/www/html/repo/BaseOS/
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 
 [AppStream]
-name=Red Hat Enterprise Linux 9.0 AppStream RPMs (DVD)
+name=Rocky 9.0 AppStream RPMs (DVD)
 metadata_expire=-1
 enabled=1
 gpgcheck=1
 baseurl=file:///var/www/html/repo/AppStream/
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 ```
 
 ## 10. Index and create the repos
