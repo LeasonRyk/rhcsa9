@@ -9,13 +9,13 @@ The following steps will take you through creating a repo on a Rocky 9.0 server 
 
 Sample output:
 ```
-[root@rhcsa9-server1 ~]# blkid
+[root@rocky9-repo ~]# blkid
 /dev/mapper/rhel-swap: UUID="6526927e-9154-4be0-9934-c399b99db572" TYPE="swap"
 /dev/mapper/rhel-root: UUID="886a01c4-9c77-4937-8297-7f176d1d7a2b" BLOCK_SIZE="512" TYPE="xfs"
 /dev/sda2: UUID="eEatSm-VCEV-tCBK-CDUA-h7Ve-Wehe-1DVnJH" TYPE="LVM2_member" PARTUUID="af327725-02"
 /dev/sda1: UUID="241a3465-4d4e-4d91-82df-6105f6b1cfd2" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="af327725-01"
 /dev/sr0: BLOCK_SIZE="2048" UUID="2022-08-05-06-19-40-00" LABEL="RHEL-9-0-0-BaseOS-x86_64" TYPE="iso9660" PTUUID="60d19322" PTTYPE="dos"
-[root@rhcsa9-server1 ~]#
+[root@rocky9-repo ~]#
 ```
 We can see here that the DVD ISO is present under `/dev/sr0`.
 
