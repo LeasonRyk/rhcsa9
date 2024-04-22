@@ -8,7 +8,7 @@
 - NIC: 2
   - 1 NAT for internet access
   - 1 Local Host for machine and other server access
-- OS: RHEL 9.0 Minimal Install
+- OS: Rocky 9.0 Minimal Install
 
 ## Break the boot
 Set the root password to something random, and then break the boot so it doesn't even get to a login prompt:
